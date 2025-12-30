@@ -1,0 +1,116 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Atminterface
+{
+    public static void main(String[] args)
+     {
+
+        Scanner sc = new Scanner(System.in);
+
+        // ===== ACCOUNT CREATION =====
+        System.out.print("Set User ID: ");
+        String userId = sc.next();
+
+        System.out.print("Set PIN: ");
+        int pin = sc.nextInt();
+
+        double balance = 0; // starting balance
+        ArrayList<String> history = new ArrayList<>(); // transaction history
+
+        // ===== LOGIN =====
+        System.out.println("\n--- LOGIN ---");
+        System.out.print("Enter User ID: ");
+        String enteredUser = sc.next();
+
+        System.out.print("Enter PIN: ");
+        int enteredPin = sc.nextInt();
+
+        if (userId.equals(enteredUser) && pin == enteredPin) {
+            System.out.println("Login Successful!");
+
+            // ===== ATM MENU =====
+            while (true) {
+                System.out.println("\n--- ATM MENU ---");
+                System.out.println("1. View Transaction History");
+                System.out.println("2. Withdraw Money");
+                System.out.println("3. Deposit Money");
+                System.out.println("4. Transfer Money");
+                System.out.println("5. Exit");
+                System.out.print("Choose option: ");
+
+                int choice = sc.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        System.out.println("\n--- Transaction History ---");
+                        if (history.isEmpty()) 
+                        {
+                            System.out.println("No transactions yet.");
+                        }
+                         else 
+                        {
+                            for (String record : history)
+                             {
+                                System.out.println(record);
+                            }
+                        }
+                        break;
+
+                    case 2:
+                        System.out.print("Enter amount to withdraw: ");
+                        double withdraw = sc.nextDouble();
+                        if (withdraw <= balance) 
+                        {
+                            balance -= withdraw;
+                            history.add("Withdrawn: Rs." + withdraw);
+                            System.out.println("Withdrawal Successful!");
+                        } 
+                        else 
+                        {
+                            System.out.println("Insufficient Balance!");
+                        }
+                        break;
+
+                    case 3:
+                        System.out.print("Enter amount to deposit: ");
+                        double deposit = sc.nextDouble();
+                        balance += deposit;
+                        history.add("Deposited: Rs." + deposit);
+                        System.out.println("Deposit Successful!");
+                        break;
+
+                    case 4:
+                        System.out.print("Enter amount to transfer: ");
+                        double transfer = sc.nextDouble();
+                        if (transfer <= balance)
+                        {
+                            balance -= transfer;
+                            history.add("Transferred: Rs." + transfer);
+                            System.out.println("Transfer Successful!");
+                        } 
+                        else 
+                        {
+                            System.out.println("Insufficient Balance!");
+                        }
+                        break;
+
+                    case 5:
+                        System.out.println("Thank you for using ATM!");
+                        sc.close();
+                        return;
+
+                    default:
+                        System.out.println("Invalid Option! Try again.");
+                }
+            }
+
+        }
+        else 
+        {
+            System.out.println("Wrong User ID or PIN!");
+        }
+
+        sc.close();
+    }
+}
