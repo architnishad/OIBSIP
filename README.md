@@ -4,6 +4,7 @@
 
 Welcome to Oasis Infobyte Java Development Projects repository. This repository contains Java projects, including   "Number Guessing Game" and "ATM Interface". These projects are designed to help you improve your Java programming skills and showcase your knowledge.
 
+
 ---
 
 ### **Project 1: Number Guessing Game**
@@ -21,6 +22,8 @@ The fun and easy project "Guess the Number" is a short Java project that allows 
 
 
 
+
+----
 
 ### **Project 2: ATM Interface**
 
